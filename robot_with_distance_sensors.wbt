@@ -1,0 +1,258 @@
+#VRML_SIM R2018a utf8
+WorldInfo {
+  info [
+    "Description: Simulation of robot's motion with collision avoidance"
+  ]
+  title "Robot with distance sensors"
+  basicTimeStep 16
+  lineScale 0.2
+}
+Viewpoint {
+  orientation -0.23928964311621254 0.9307531991355711 0.27647594650568713 1.9902859261083663
+  position 8.505458472668316 6.728764154089326 -4.280622123037352
+  follow "soccer ball"
+}
+Background {
+  skyColor [
+    0.4 0.7 1
+  ]
+  backUrl [
+    "textures/cubic/noon_sunny_empty_back.jpg"
+  ]
+  bottomUrl [
+    "textures/cubic/noon_sunny_empty_bottom.jpg"
+  ]
+  frontUrl [
+    "textures/cubic/noon_sunny_empty_front.jpg"
+  ]
+  leftUrl [
+    "textures/cubic/noon_sunny_empty_left.jpg"
+  ]
+  rightUrl [
+    "textures/cubic/noon_sunny_empty_right.jpg"
+  ]
+  topUrl [
+    "textures/cubic/noon_stormy_empty_top.jpg"
+  ]
+}
+PointLight {
+  intensity 0.6
+  location 0 0.5 0
+  castShadows TRUE
+}
+DirectionalLight {
+  direction 0 -1 0.5
+  intensity 0.6
+}
+RectangleArena {
+  translation -0.5 0 0
+  floorSize 6 6
+  floorTextureUrl [
+    "textures/carpet.jpg"
+  ]
+}
+Sofa {
+  translation -1.6500000000000001 0 -0.8199999999999996
+  color 0.20392156862745098 0.396078431372549 0.6431372549019608
+}
+Armchair {
+  translation 0.1500000000000008 0 1.5400000020138578
+  rotation 0 1 0 1.5707963220000003
+  color 0.20392156862745098 0.396078431372549 0.6431372549019608
+}
+Shelves {
+  translation -2.8 0 1.5
+}
+PottedTree {
+  translation -1.2400000000000004 0 0.8900000000000002
+}
+PottedTree {
+  translation -3.0700000000000016 0 -2.49
+  name "potted tree(1)"
+}
+Table {
+  translation -0.23000000000000007 0 -0.7400000000000003
+  size 0.5 0.4 1.5
+}
+FloorLight {
+  translation -1.810000000000001 0 -2.0599999999999996
+  bulbColor 0.9333333333333333 0.9333333333333333 0.9254901960784314
+}
+FruitBowl {
+  translation -0.11 0.43000000000000005 -0.7800000000000002
+  color 0.9607843137254902 0.4745098039215686 0
+  textureUrl [
+    "textures/tiles.jpg"
+  ]
+}
+SoccerBall {
+  translation 1.7300000000000006 0.1 -0.4099999999999993
+}
+Robot {
+  translation 0.7535651272274617 0.039860489647247796 -0.10133499987451712
+  rotation -3.821726649633056e-8 0.9999999999999988 -3.2543269682227195e-8 1.7309006063076282
+  scale 2 2 2
+  children [
+    DEF BODY Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.917647 0.145098 0.145098
+        }
+      }
+      geometry Box {
+        size 0.1 0.05 0.2
+      }
+    }
+    DEF WHEEL1 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 91.10395790584347
+        anchor 0.06 0 0.05
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.06 0 0.05
+        rotation 1 0 0 3.1393636053292617
+        children [
+          DEF WHEEL Transform {
+            rotation 0 0 1 1.5708
+            children [
+              Shape {
+                appearance Appearance {
+                  material Material {
+                    diffuseColor 0.305882 0.898039 0.25098
+                  }
+                }
+                geometry Cylinder {
+                  height 0.02
+                  radius 0.04
+                  subdivision 24
+                }
+              }
+            ]
+          }
+        ]
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+        linearVelocity -0.039488429904136965 2.306219874464519e-9 0.006376843117520191
+        angularVelocity 0.15942112444881723 2.4891974192853335e-8 0.9872106692711341
+      }
+    }
+    DEF WHEEL2 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 39.904037834062756
+        anchor -0.06 0 0.05
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06 0 0.05
+        rotation 1 0 0 2.204925990985237
+        children [
+          USE WHEEL
+        ]
+        name "solid(1)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+        linearVelocity -0.03948842436443791 -2.3062598096376705e-9 0.006376842222691208
+        angularVelocity 0.1594211244030631 2.4846746481684105e-8 0.9872106688252236
+      }
+    }
+    DEF WHEEL3 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 91.10396199557489
+        anchor 0.06 0 -0.05
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation 0.06 0 -0.05
+        rotation 1 0 0 3.139367695060681
+        children [
+          USE WHEEL
+        ]
+        name "solid(2)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+        linearVelocity -0.0394884291589453 2.3060142999659405e-9 0.006376847732117645
+        angularVelocity 0.15942112446862658 2.486511371592982e-8 0.9872106692679351
+      }
+    }
+    DEF WHEEL4 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 39.90404188054373
+        anchor -0.06 0 -0.05
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06 0 -0.05
+        rotation 1 0 0 2.204930037466211
+        children [
+          USE WHEEL
+        ]
+        name "solid(3)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+        linearVelocity -0.039488423619246406 -2.3064659392220303e-9 0.00637684683728832
+        angularVelocity 0.1594211244228711 2.4819884345230465e-8 0.9872106688220261
+      }
+    }
+    DEF DS_RIGHT DistanceSensor {
+      translation -0.03 0 0.1
+      rotation 0 1 0 -1.87079
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.184314 0.596078 0.847059
+            }
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_right"
+    }
+    DEF DS_LEFT DistanceSensor {
+      translation 0.03 0 0.1
+      rotation 0 1 0 -1.27079
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.184314 0.596078 0.847059
+            }
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_left"
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "4_wheels_collision_avoidance"
+}
